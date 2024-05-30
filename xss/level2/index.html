@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Guestbook</h1>
+    <div id="guestbook"></div>
+    <form onsubmit="addEntry(event)">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name"><br>
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const entries = [];
+
+        function addEntry(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+            entries.push({name, comment});
+            displayEntries();
+        }
+
+        function displayEntries() {
+            const guestbook = document.getElementById('guestbook');
+            guestbook.innerHTML = '';
+            for (const entry of entries) {
+                guestbook.innerHTML += `<p>${entry.name}: ${entry.comment}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
+<!-- paylod: for xss attack -->
+<!-- <img src=x onerror=alert('XSS')> -->
+<!-- to fix the site from xss attack we can use the following code -->
+<!-- 
+function displayEntries() {
+    const guestbook = document.getElementById('guestbook');
+    guestbook.innerHTML = '';
+    for (const entry of entries) {
+        const sanitizedEntry = {
+            name: entry.name.replace(/</g, "&lt;").replace(/>/g, "&gt;"),
+            comment: entry.comment.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        };
+        guestbook.innerHTML += `<p>${sanitizedEntry.name}: ${sanitizedEntry.comment}</p>`;
+    }
+} -->
