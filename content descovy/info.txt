@@ -1,0 +1,24 @@
+https://en.wikipedia.org/wiki/Google_hacking
+
+osint ( open source intiligence)
+
+Filter
+	Example
+	Description
+site
+	site:tryhackme.com
+	returns results only from the specified website address
+inurl
+	inurl:admin
+	returns results that have the specified word in the URL
+filetype
+	filetype:pdf
+	returns results which are a particular file extension
+intitle
+	intitle:admin
+	returns results that contain the specified word in the title
+
+
+
+The site used to check the website updated
+https://web.archive.org/
